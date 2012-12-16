@@ -8,21 +8,34 @@ $sortedArray = array();
 $numberOfItems = $_REQUEST['number_of_items'];
 
 // Get each item
-for (int $iterator = 1; $iterator <= $numberOfItems; $iterator)
+for ($iterator = 1; $iterator <= $numberOfItems; $iterator++)
 {
-
+    // Get from request variable and add to unsorted array
+    $unsortedArray[] = $_REQUEST['item' . $iterator];
 }
 
-//$returnData = json_encode($_REQUEST);
+// Copy unsorted array to sorted array
+$sortedArray = $unsortedArray;
 
-$array = array("unsorted_numbers" => array(12, 124, 32));
+// Sort array
+sort($sortedArray);
 
-$returnData = json_encode($array);
+// Add arrays together in the sort collection
+$sortCollection = array("unsorted_numbers" => $unsortedArray, "sorted_numbers" => $sortedArray);
+
+// Encode JSON 
+$returnData = json_encode($sortCollection);
 
 // Send the JSON document
 Header('Content-type: application/json');
 print ($returnData);
 
+// Save to log for debug
+$currentTime = date("[m.d.Y - H:i:s]");
+
+$logString = $currentTime . " --> " . $returnData . "\n";
+
+file_put_contents('json-calls.log', $logString, FILE_APPEND);
 
 //print($jx);
 

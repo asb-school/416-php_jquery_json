@@ -70,11 +70,10 @@ function document_ready_jquery() {
             data: formData,
             success: function(data)
             {
-                     // Show data
-                    //$("#sorted_list").html(data);
-
-
+                    // Clear div
                     $("#sorted_list").empty();
+
+                    // Unsorted Items
                     $("#sorted_list").append("<h4>Unsorted Items: </h4>");
 
                     var ul = $('<ul>').appendTo('#sorted_list');
@@ -85,8 +84,16 @@ function document_ready_jquery() {
                         );
                     });
 
+                    // Sorted Items
+                    $("#sorted_list").append("<h4>Sorted Items: </h4>");
 
-                //    alert("loaded");
+                    var ul = $('<ul>').appendTo('#sorted_list');
+                    
+                    $(data.sorted_numbers).each(function(index, item) {
+                        ul.append(
+                            $(document.createElement('li')).text(item)
+                        );
+                    });
             }
         });
     }); 
@@ -124,7 +131,7 @@ function input_items_init() {
         item_num = i + 1;
         iic.append(
             '<p>' +
-            '<label for="items' + item_num + '">Item</label>' +
+            '<label for="items' + item_num + '">Item ' + item_num + '</label>' +
             '<input type="text" name="item' + item_num + '" id="item' + item_num + '"/>' +
             '</p>'
         );

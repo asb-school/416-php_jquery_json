@@ -98,13 +98,13 @@
 
       	
 			<div data-role="fieldcontain">
-	         
+	         			<input type="hidden" name="number_of_items" value="<?php echo $_REQUEST['num_items']; ?>" />
 			</div>
 
 			<div data-role="fieldcontain" class="input_items_collection">
 			</div>
 
-			<input type="hidden" id="number_of_items" value="<?php echo $_REQUEST['num_items']; ?>" />
+			
 
 
 			<div id="sorted_list" data-role="fieldcontain">
