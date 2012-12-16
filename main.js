@@ -50,21 +50,63 @@ function document_ready_jquery() {
 
 
 
+    $("#sort_btn").click(function(event)
+    { 
+        // Prevent default form submission
+        event.preventDefault(); 
+        
+        // Annoy the user
+     //   alert("stop pushing me");
 
+        // Get form data
+        var formData = $("#input_items_form").serialize();
+
+        // Process AJAX request
+        $.ajax(
+        {
+            type: "post",
+            url: "data-json.php",
+            dataType : "json",
+            data: formData,
+            success: function(data)
+            {
+                     // Show data
+                    //$("#sorted_list").html(data);
+
+
+                    $("#sorted_list").empty();
+                    $("#sorted_list").append("<h4>Unsorted Items: </h4>");
+
+                    var ul = $('<ul>').appendTo('#sorted_list');
+                    
+                    $(data.unsorted_numbers).each(function(index, item) {
+                        ul.append(
+                            $(document.createElement('li')).text(item)
+                        );
+                    });
+
+
+                //    alert("loaded");
+            }
+        });
+    }); 
 
    
 
     //alert("End script document_ready_jquery");
 
+
     
-    $('#list_items_form').bind('submit', function (e) {
+    /*$('#input_items_items_form').bind('submit', function (e) {
         e.preventDefault();
         $.post('main.php#list_items', $(this).serialize(), function (response) {
-            $.mobile.changePage('#input_items', {transition: 'slide'});
+            $.mobile.changePage('#list_items', 
+                {transition: 'fade',
+                data: $(this).serialize()});
             alert("something happened");
         });
     });
-    
+  */
 }
 
 /**

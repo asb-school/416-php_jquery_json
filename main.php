@@ -65,7 +65,7 @@
 
 		    <div class="ui-body ui-body-b">
 		    <fieldset class="ui-grid-a">
-				    <div class="ui-block-a"><button type="submit" data-theme="d">Cancel</button></div>
+				    
 				    <div class="ui-block-b"><button type="submit" data-theme="a">Submit</button></div>
 	        </fieldset>
 		    </div>
@@ -89,13 +89,14 @@
 	<div data-role="content" >	
 		<h2>Sort service - Input items</h2>
 
-        <p>The current time is <?= time() ?></p>
-		
+       	
 		<p>Enter items below</p>
 
         <p>Total number of items is <?= $_REQUEST["num_items"] ?></p>
 		
-        <form id="list_items_form" action="main.php#list_items" method="post" data-ajax="false">
+      <form id="input_items_form" data-ajax="false">
+
+      	
 			<div data-role="fieldcontain">
 	         
 			</div>
@@ -103,15 +104,23 @@
 			<div data-role="fieldcontain" class="input_items_collection">
 			</div>
 
+			<input type="hidden" id="number_of_items" value="<?php echo $_REQUEST['num_items']; ?>" />
+
+
+			<div id="sorted_list" data-role="fieldcontain">
+
+			</div>
+
 		    <div class="ui-body ui-body-b">
 		    <fieldset class="ui-grid-a">
-				    <div class="ui-block-a"><button type="submit" data-theme="d">Cancel</button></div>
-				    <div class="ui-block-b"><button type="submit" data-theme="a">Submit</button></div>
+				    <div class="ui-block-b"><button type="submit" id="sort_btn" data-theme="a">Sort</button></div>
+
 	        </fieldset>
 		    </div>
-        </form>
+	
+      </form>
 
-		<p><a href="#list_items" data-role="button">List Items</a></p>	
+		<!--<p><a href="#list_items" data-role="button">List Items</a></p>	-->
 		<p><a href="#start" data-role="button">Menu</a></p>
 	</div><!-- /content -->
 	
@@ -129,7 +138,11 @@
 	<div data-role="content" >	
 		<h2>Sort service - Item list</h2>
 		
+
+
 		<p>Items are shown below</p>	
+
+		<p>Input item1: <?php print_r($_REQUEST); ?> </p>
 
         <form action="main.php#list_items" method="post">
 			<div data-role="fieldcontain">

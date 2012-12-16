@@ -1,5 +1,34 @@
+
 <?php
 
+$unsortedArray = array();
+$sortedArray = array();
+
+// Get the number of items
+$numberOfItems = $_REQUEST['number_of_items'];
+
+// Get each item
+for (int $iterator = 1; $iterator <= $numberOfItems; $iterator)
+{
+
+}
+
+//$returnData = json_encode($_REQUEST);
+
+$array = array("unsorted_numbers" => array(12, 124, 32));
+
+$returnData = json_encode($array);
+
+// Send the JSON document
+Header('Content-type: application/json');
+print ($returnData);
+
+
+//print($jx);
+
+
+
+/*
 // Get request data
 $val1 = $_REQUEST["val1"];
 $val2 = $_REQUEST["val2"];
@@ -21,7 +50,7 @@ $sort_object = array (
 );
 
 $j = json_encode($sort_object);
-*/
+
 
 //$unsorted_numbers_val = array(45, 12, 79);
 $unsorted_numbers_val[0] = 45;
@@ -35,7 +64,7 @@ $j = json_encode($sort_object);
 
 // Example of a JSON entity for arithmetic
 
-/*
+
 <math_op>
     <operands>
         <operand1>4</operand1>
@@ -63,7 +92,7 @@ $arithmetic_entity = array(
         )
     )
 );
-*/
+
 
 $arithmetic_entity = array(
     "math_op" => array(
@@ -113,9 +142,6 @@ Header('Content-type: text/xml');
 print($math_op->asXML());
 */
 
-// Send the JSON document
-Header('Content-type: application/json');
-//print($j);
-print($jx);
+
 
 ?>
